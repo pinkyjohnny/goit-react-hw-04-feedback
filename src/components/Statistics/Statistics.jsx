@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { StatisticsWrapper, StatsName } from './Statistics.styled';
 
-export const Statistics = ({ good, neutral, bad, total, positiveFeedback }) => {
+export const Statistics = ({ data, total, positiveFeedback }) => {
+  const { good, neutral, bad } = data;
   return (
     <StatisticsWrapper>
       <ul>
@@ -23,4 +25,14 @@ export const Statistics = ({ good, neutral, bad, total, positiveFeedback }) => {
       </ul>
     </StatisticsWrapper>
   );
+};
+
+Statistics.propTypes = {
+  data: PropTypes.shape({
+    good: PropTypes.number,
+    bad: PropTypes.number,
+    neutral: PropTypes.number,
+  }),
+  total: PropTypes.func,
+  positiveFeedback: PropTypes.func,
 };
